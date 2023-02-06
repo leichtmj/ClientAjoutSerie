@@ -1,0 +1,124 @@
+<!-- Copyright (c) Microsoft Corporation and Contributors. -->
+<!-- Licensed under the MIT License. -->
+
+<Page
+    x:Class="ClientAjoutSerie.Views.AjoutSerie"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ClientAjoutSerie.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+
+    <RelativePanel>
+        <TextBlock
+            x:Name="txtitre"
+            Margin="0,15,0,15"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            Text="Titre" />
+
+
+        <TextBox
+            x:Name="titre"
+            Margin="0,0,0,15"
+            Width="175"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="txtitre"
+            Text="{Binding SerietoAdd.Titre, Mode=TwoWay}" />
+
+        <TextBlock
+            x:Name="txtresume"
+            Width="175"
+            Margin="0,0,0,15"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="titre"
+            Text="Resume" />
+
+        <TextBox
+            x:Name="resume"
+            Width="175"
+            Margin="0,0,0,15"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="txtresume"
+            Text="{Binding SerietoAdd.Resume, Mode=TwoWay}" />
+
+        <TextBlock
+            x:Name="txtnbsaisons"
+            Width="175"
+            Margin="0,0,0,15"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="resume"
+            Text="Nb saisons" />
+
+        <TextBox
+            x:Name="nbsaisons"
+            Width="175"
+            Margin="0,0,0,15"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="txtnbsaisons"
+            Text="{Binding SerietoAdd.Nbsaisons, Mode=TwoWay}" />
+
+
+        <TextBlock
+            x:Name="txtnbepisodes"
+            Width="175"
+            Margin="0,0,0,15"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="nbsaisons"
+            Text="Nb episodes" />
+
+        <TextBox
+            x:Name="nbepisodes"
+            Width="175"
+            Margin="0,0,0,25"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="txtnbepisodes"
+            Text="{Binding SerietoAdd.Nbepisodes, Mode=TwoWay}" />
+
+
+        <TextBlock
+            x:Name="txtanneecreation"
+            Width="175"
+            Margin="0,0,0,15"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="nbepisodes"
+            Text="Annee création" />
+
+        <TextBox
+            x:Name="anneecreation"
+            Width="175"
+            Margin="0,0,0,15"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="txtanneecreation"
+            Text="{Binding SerietoAdd.Anneecreation, Mode=TwoWay}" />
+
+        <TextBlock
+            x:Name="txtchaine"
+            Width="175"
+            Margin="0,0,0,15"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="anneecreation"
+            Text="Chaine" />
+
+        <TextBox
+            x:Name="chaine"
+            Width="175"
+            Margin="0,0,0,15"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="txtchaine"
+            Text="{Binding SerietoAdd.Network, Mode=TwoWay}" />
+
+        <Button
+            x:Name="button"
+            Width="175"
+            Margin="0,0,0,15"
+            Command="{Binding BtnSetConversion}"
+            Content="Convertir"
+            RelativePanel.AlignHorizontalCenterWithPanel="True"
+            RelativePanel.Below="chaine" />
+
+
+    </RelativePanel>
+</Page>
