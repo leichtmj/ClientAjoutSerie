@@ -39,7 +39,7 @@ namespace ClientAjoutSerie.Services
         {
             try
             {
-                return await client.GetFromJsonAsync<Serie>(string.Concat(client.BaseAddress, $"/series/{id}"));
+                return await client.GetFromJsonAsync<Serie>(string.Concat(client.BaseAddress, $"series/{id}"));
             }
             catch (Exception)
             {
@@ -51,7 +51,34 @@ namespace ClientAjoutSerie.Services
         {
             try
             {
-                var response = await client.PostAsJsonAsync("api/series", s);
+                var response = await client.PostAsJsonAsync("series", s);
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteSerieAsync(Serie s)
+        {
+            try
+            {
+                var response = await client.DeleteAsync(string.Concat(client.BaseAddress, $"/series/{s.Serieid}"));
+                return response.EnsureSuccessStatusCode().IsSuccessStatusCode;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+
+        public async Task<bool> PutSerieAsync(Serie s)
+        {
+            try
+            {
+                var response = await client.PutAsJsonAsync(string.Concat(client.BaseAddress, $"/series/{s.Serieid}"),s);
                 return response.EnsureSuccessStatusCode().IsSuccessStatusCode;
             }
             catch (Exception)

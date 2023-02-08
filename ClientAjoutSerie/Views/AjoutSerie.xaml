@@ -23,14 +23,13 @@
         <TextBox
             x:Name="titre"
             Margin="0,0,0,15"
-            Width="175"
+            Width="350"
             RelativePanel.AlignHorizontalCenterWithPanel="True"
             RelativePanel.Below="txtitre"
             Text="{Binding SerietoAdd.Titre, Mode=TwoWay}" />
 
         <TextBlock
             x:Name="txtresume"
-            Width="175"
             Margin="0,0,0,15"
             RelativePanel.AlignHorizontalCenterWithPanel="True"
             RelativePanel.Below="titre"
@@ -38,7 +37,8 @@
 
         <TextBox
             x:Name="resume"
-            Width="175"
+            Width="350"
+            Height="100"
             Margin="0,0,0,15"
             RelativePanel.AlignHorizontalCenterWithPanel="True"
             RelativePanel.Below="txtresume"
@@ -46,7 +46,6 @@
 
         <TextBlock
             x:Name="txtnbsaisons"
-            Width="175"
             Margin="0,0,0,15"
             RelativePanel.AlignHorizontalCenterWithPanel="True"
             RelativePanel.Below="resume"
@@ -63,7 +62,6 @@
 
         <TextBlock
             x:Name="txtnbepisodes"
-            Width="175"
             Margin="0,0,0,15"
             RelativePanel.AlignHorizontalCenterWithPanel="True"
             RelativePanel.Below="nbsaisons"
@@ -80,7 +78,6 @@
 
         <TextBlock
             x:Name="txtanneecreation"
-            Width="175"
             Margin="0,0,0,15"
             RelativePanel.AlignHorizontalCenterWithPanel="True"
             RelativePanel.Below="nbepisodes"
@@ -96,7 +93,6 @@
 
         <TextBlock
             x:Name="txtchaine"
-            Width="175"
             Margin="0,0,0,15"
             RelativePanel.AlignHorizontalCenterWithPanel="True"
             RelativePanel.Below="anneecreation"

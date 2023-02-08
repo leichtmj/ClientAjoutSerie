@@ -13,25 +13,16 @@ namespace ClientAjoutSerie.Services.Tests
     [TestClass()]
     public class WSServiceTests
     {
-
         private static WSService service;
 
         public WSServiceTests()
         {
             service = new WSService("https://apiseriesleichtmj.azurewebsites.net/api/");
-
-        }
-
-        [TestMethod()]
-        public void WSServiceTest()
-        {
         }
 
         [TestMethod()]
         public void GetSeriesAsyncTest()
         {
-
-
             List<Serie> listdevises = new List<Serie>();
             listdevises.AddRange(new List<Serie>
             {
@@ -67,12 +58,39 @@ namespace ClientAjoutSerie.Services.Tests
         [TestMethod()]
         public void PostSeriesAsyncTest()
         {
-
-
             Serie serie = new Serie(1234, "Scrubs", "J.D. est un jeune médecin qui débute sa carrière dans l'hôpital du Sacré-Coeur. Il vit avec son meilleur ami Turk, qui lui est chirurgien dans le même hôpital. Très vite, Turk tombe amoureux d'une infirmière Carla. Elliot entre dans la bande. C'est une étudiante en médecine quelque peu surprenante. Le service de médecine est dirigé par l'excentrique Docteur Cox alors que l'hôpital est géré par le diabolique Docteur Kelso. A cela viennent s'ajouter plein de personnages hors du commun : Todd le chirurgien obsédé, Ted l'avocat dépressif, le concierge qui trouve toujours un moyen d'embêter JD... Une belle galerie de personnage !", 9, 184, 2001, "ABC (US)");
 
-
             var getserie = service.PostSerieAsync(serie).Result;
+
+            Assert.IsTrue(getserie);
+
+            _ = service.DeleteSerieAsync(serie).Result;
+        }
+
+        [TestMethod()]
+        public void DeleteSeriesAsyncTest()
+        {
+            Serie serie = new Serie(1235, "Scrubs", "J.D. est un jeune médecin qui débute sa carrière dans l'hôpital du Sacré-Coeur. Il vit avec son meilleur ami Turk, qui lui est chirurgien dans le même hôpital. Très vite, Turk tombe amoureux d'une infirmière Carla. Elliot entre dans la bande. C'est une étudiante en médecine quelque peu surprenante. Le service de médecine est dirigé par l'excentrique Docteur Cox alors que l'hôpital est géré par le diabolique Docteur Kelso. A cela viennent s'ajouter plein de personnages hors du commun : Todd le chirurgien obsédé, Ted l'avocat dépressif, le concierge qui trouve toujours un moyen d'embêter JD... Une belle galerie de personnage !", 9, 184, 2001, "ABC (US)");
+
+            _ = service.PostSerieAsync(serie).Result;
+
+            var getserie = service.DeleteSerieAsync(serie).Result;
+
+            Assert.IsTrue(getserie);
+        }
+
+        [TestMethod()]
+        public void PutSeriesAsyncTest()
+        {
+            Serie serie = new Serie(1236, "Scrum", "J.D. est un jeune médecin qui débute sa carrière dans l'hôpital du Sacré-Coeur. Il vit avec son meilleur ami Turk, qui lui est chirurgien dans le même hôpital. Très vite, Turk tombe amoureux d'une infirmière Carla. Elliot entre dans la bande. C'est une étudiante en médecine quelque peu surprenante. Le service de médecine est dirigé par l'excentrique Docteur Cox alors que l'hôpital est géré par le diabolique Docteur Kelso. A cela viennent s'ajouter plein de personnages hors du commun : Todd le chirurgien obsédé, Ted l'avocat dépressif, le concierge qui trouve toujours un moyen d'embêter JD... Une belle galerie de personnage !", 9, 184, 2001, "ABC (US)");
+            
+            _ = service.PostSerieAsync(serie).Result;
+
+            Serie serieModif = new Serie(1236, "Scrummy", "J.D. est un jeune médecin qui débute sa carrière dans l'hôpital du Sacré-Coeur. Il vit avec son meilleur ami Turk, qui lui est chirurgien dans le même hôpital. Très vite, Turk tombe amoureux d'une infirmière Carla. Elliot entre dans la bande. C'est une étudiante en médecine quelque peu surprenante. Le service de médecine est dirigé par l'excentrique Docteur Cox alors que l'hôpital est géré par le diabolique Docteur Kelso. A cela viennent s'ajouter plein de personnages hors du commun : Todd le chirurgien obsédé, Ted l'avocat dépressif, le concierge qui trouve toujours un moyen d'embêter JD... Une belle galerie de personnage !", 9, 184, 2001, "ABC (US)");
+            
+            var getserie = service.PutSerieAsync(serieModif).Result;
+
+            _ = service.DeleteSerieAsync(serie).Result;
 
             Assert.IsTrue(getserie);
         }

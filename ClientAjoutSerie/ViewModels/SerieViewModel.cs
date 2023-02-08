@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ClientAjoutSerie.ViewModels
@@ -17,10 +18,12 @@ namespace ClientAjoutSerie.ViewModels
 
         private Serie serietoAdd;
 
-        public static WSService service = new WSService("https://apiseriesleichtmj.azurewebsites.net/api/");
+        private WSService service;
+
 
         public SerieViewModel()
         {
+            service = new WSService("https://apiseriesleichtmj.azurewebsites.net/api/");
             GetDataOnLoadAsync();
             BtnSetConversion = new RelayCommand(ActionSetConversion);
             SerietoAdd = new Serie();
@@ -39,12 +42,20 @@ namespace ClientAjoutSerie.ViewModels
             set
             {
                 serietoAdd = value;
+                OnPropertyChanged();
             }
         }
 
-        public virtual void ActionSetConversion()
+        public async void ActionSetConversion()
         {
-            DisplayshowAsync("Reussi", $"{SerietoAdd.Titre}");
+            if (SerietoAdd.Nbsaisons==0 || SerietoAdd.Nbepisodes==0 || SerietoAdd.Network==null 
+                || SerietoAdd.Anneecreation==0 || SerietoAdd.Titre==null || SerietoAdd.Resume==null)
+                DisplayshowAsync("Erreur", "Veuillez remplir tout les champs");
+            else
+            {
+                var verif = await service.PostSerieAsync(SerietoAdd);
+                DisplayshowAsync("Information", "Série ajoutée avec succès !");
+            }
         }
 
 
@@ -55,8 +66,10 @@ namespace ClientAjoutSerie.ViewModels
             {
                 DisplayshowAsync("Erreur", "API non disponible");
             }
-            else { }
-                //LesDevises = new ObservableCollection<Serie>(result);
+            else {
+                DisplayshowAsync("test", result[0].ToString());
+            }
+                
         }
 
         public async void DisplayshowAsync(string title, string desc)
