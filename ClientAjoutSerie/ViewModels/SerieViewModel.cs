@@ -53,7 +53,7 @@ namespace ClientAjoutSerie.ViewModels
                 DisplayshowAsync("Erreur", "Veuillez remplir tout les champs");
             else
             {
-                var verif = await service.PostSerieAsync(SerietoAdd);
+                await service.PostSerieAsync(SerietoAdd);
                 DisplayshowAsync("Information", "Série ajoutée avec succès !");
             }
         }

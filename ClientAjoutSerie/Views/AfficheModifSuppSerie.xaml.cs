@@ -29,6 +29,8 @@ namespace ClientAjoutSerie.Views
         public AfficheModifSuppSerie()
         {
             this.InitializeComponent();
+            DataContext = ((App)Application.Current).SRUDViewModel;
+
         }
     }
 }

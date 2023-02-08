@@ -64,8 +64,8 @@ namespace ClientAjoutSerie.Services
         {
             try
             {
-                var response = await client.DeleteAsync(string.Concat(client.BaseAddress, $"/series/{s.Serieid}"));
-                return response.EnsureSuccessStatusCode().IsSuccessStatusCode;
+                var response = await client.DeleteAsync($"series/{s.Serieid}");
+                return response.IsSuccessStatusCode;
             }
             catch (Exception)
             {
@@ -78,8 +78,8 @@ namespace ClientAjoutSerie.Services
         {
             try
             {
-                var response = await client.PutAsJsonAsync(string.Concat(client.BaseAddress, $"/series/{s.Serieid}"),s);
-                return response.EnsureSuccessStatusCode().IsSuccessStatusCode;
+                var response = await client.PutAsJsonAsync($"series/{s.Serieid}",s);
+                return response.IsSuccessStatusCode;
             }
             catch (Exception)
             {

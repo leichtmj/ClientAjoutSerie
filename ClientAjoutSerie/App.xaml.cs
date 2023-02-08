@@ -42,6 +42,7 @@ namespace ClientAjoutSerie
             this.InitializeComponent();
             Ioc.Default.ConfigureServices(new ServiceCollection()
                 .AddSingleton<SerieViewModel>()
+                .AddSingleton<SRUDViewModel>()
                 .BuildServiceProvider());
         }
 
@@ -52,6 +53,11 @@ namespace ClientAjoutSerie
         public SerieViewModel SerieViewModel
         {
             get { return Ioc.Default.GetService<SerieViewModel>(); }
+        }
+
+        public SRUDViewModel SRUDViewModel
+        {
+            get { return Ioc.Default.GetService<SRUDViewModel>(); }
         }
         /// <summary>
         /// Invoked when the application is launched.
@@ -67,7 +73,7 @@ namespace ClientAjoutSerie
             //Ensure the current window is active
             m_window.Activate();
             //Navigate to the first page
-            rootFrame.Navigate(typeof(AjoutSerie));
+            rootFrame.Navigate(typeof(AfficheModifSuppSerie));
         }
 
         private Window m_window;
