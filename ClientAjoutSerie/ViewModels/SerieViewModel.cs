@@ -24,7 +24,6 @@ namespace ClientAjoutSerie.ViewModels
         public SerieViewModel()
         {
             service = new WSService("https://apiseriesleichtmj.azurewebsites.net/api/");
-            GetDataOnLoadAsync();
             BtnSetConversion = new RelayCommand(ActionSetConversion);
             SerietoAdd = new Serie();
         }
@@ -46,6 +45,7 @@ namespace ClientAjoutSerie.ViewModels
             }
         }
 
+
         public async void ActionSetConversion()
         {
             if (SerietoAdd.Nbsaisons==0 || SerietoAdd.Nbepisodes==0 || SerietoAdd.Network==null 
@@ -54,22 +54,9 @@ namespace ClientAjoutSerie.ViewModels
             else
             {
                 await service.PostSerieAsync(SerietoAdd);
+                Thread.Sleep(1000);
                 DisplayshowAsync("Information", "Série ajoutée avec succès !");
             }
-        }
-
-
-        public async void GetDataOnLoadAsync()
-        {
-            List<Serie> result = await service.GetSeriesAsync("series");
-            if (result == null)
-            {
-                DisplayshowAsync("Erreur", "API non disponible");
-            }
-            else {
-                DisplayshowAsync("test", result[0].ToString());
-            }
-                
         }
 
         public async void DisplayshowAsync(string title, string desc)

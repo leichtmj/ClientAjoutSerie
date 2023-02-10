@@ -9,7 +9,6 @@ namespace ClientAjoutSerie.ViewModels
     public interface ISerieViewModel
     {
         void ActionSetConversion();
-        void GetDataOnLoadAsync();
         void DisplayshowAsync(string title, string desc);
     }
 }

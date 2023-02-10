@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ClientAjoutSerie.ViewModels
@@ -68,19 +69,20 @@ namespace ClientAjoutSerie.ViewModels
         public async void ActionSetSearch()
         {
             Serie = await service.GetSeriesByIdAsync(Idsearch);
-            DisplayshowAsync("Information", "Opération effectuée avec succès");
+            Thread.Sleep(1000);
+            //DisplayshowAsync("Information", "Opération effectuée avec succès");
         }
 
         public async void ActionSetModif()
         {
             await service.PutSerieAsync(Serie);
-            DisplayshowAsync("Information", "Opération effectuée avec succès");
+            //DisplayshowAsync("Information", "Opération effectuée avec succès");
 
         }
 
         public void ActionSetDelete()
         {
-            SuppDialogAsync();
+            //SuppDialogAsync();
         }
 
         public async void GetDataOnLoadAsync()
@@ -88,48 +90,48 @@ namespace ClientAjoutSerie.ViewModels
             List<Serie> result = await service.GetSeriesAsync("series");
             if (result == null)
             {
-                DisplayshowAsync("Erreur", "API non disponible");
+                //DisplayshowAsync("Erreur", "API non disponible");
             }
             else
             {
-                DisplayshowAsync("test", result[0].ToString());
+                //DisplayshowAsync("test", result[0].ToString());
             }
 
         }
 
-        public async void DisplayshowAsync(string title, string desc)
-        {
-            ContentDialog contentDialog = new ContentDialog
-            {
-                Title = title,
-                Content = desc,
-                PrimaryButtonText = "Ok"
-            };
-            contentDialog.XamlRoot = App.MainRoot.XamlRoot;
-            ContentDialogResult result = await contentDialog.ShowAsync();
-        }
+        //public async void DisplayshowAsync(string title, string desc)
+        //{
+        //    ContentDialog contentDialog = new ContentDialog
+        //    {
+        //        Title = title,
+        //        Content = desc,
+        //        PrimaryButtonText = "Ok"
+        //    };
+        //    contentDialog.XamlRoot = App.MainRoot.XamlRoot;
+        //    ContentDialogResult result = await contentDialog.ShowAsync();
+        //}
 
 
-        public async void SuppDialogAsync()
-        {
-            ContentDialog contentDialog = new ContentDialog
-            {
-                Title = "Attention",
-                Content = "Êtes-vous sûr de vouloir supprimer cette série ?",
-                PrimaryButtonText = "Confirmer",
-                CloseButtonText ="Annuler"
-            };
-            contentDialog.XamlRoot = App.MainRoot.XamlRoot;
-            ContentDialogResult result = await contentDialog.ShowAsync();
+        //public async void SuppDialogAsync()
+        //{
+        //    ContentDialog contentDialog = new ContentDialog
+        //    {
+        //        Title = "Attention",
+        //        Content = "Êtes-vous sûr de vouloir supprimer cette série ?",
+        //        PrimaryButtonText = "Confirmer",
+        //        CloseButtonText ="Annuler"
+        //    };
+        //    contentDialog.XamlRoot = App.MainRoot.XamlRoot;
+        //    ContentDialogResult result = await contentDialog.ShowAsync();
 
-            if(result == ContentDialogResult.Primary)
-            {
-                await service.DeleteSerieAsync(Serie);
-            }
-            else
-            {
+        //    if(result == ContentDialogResult.Primary)
+        //    {
+        //        await service.DeleteSerieAsync(Serie);
+        //    }
+        //    else
+        //    {
 
-            }
-        }
+        //    }
+        //}
     }
 }

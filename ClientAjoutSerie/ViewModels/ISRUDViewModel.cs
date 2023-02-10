@@ -10,6 +10,6 @@ namespace ClientAjoutSerie.ViewModels
     {
         void ActionSetSearch();
         void GetDataOnLoadAsync();
-        void DisplayshowAsync(string title, string desc);
+        //void DisplayshowAsync(string title, string desc);
     }
 }
